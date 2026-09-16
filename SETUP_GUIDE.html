@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DrainBot Setup Guide</title>
+<style>
+  @page { size: A4; margin: 18mm; }
+  body { font-family: "Segoe UI", Arial, sans-serif; color: #19333a; line-height: 1.45; font-size: 11pt; }
+  h1 { color: #00695c; font-size: 28pt; margin: 0 0 4px; }
+  h2 { color: #00695c; border-bottom: 1px solid #b7d8d2; padding-bottom: 4px; margin-top: 22px; }
+  h3 { color: #155e63; margin-bottom: 4px; }
+  .subtitle { color: #5f7478; margin: 0 0 20px; }
+  .box { background: #eef8f5; border-left: 4px solid #00897b; padding: 10px 14px; margin: 12px 0; }
+  code, pre { font-family: Consolas, "Courier New", monospace; }
+  code { background: #eef1f2; padding: 1px 4px; border-radius: 3px; }
+  pre { background: #172b30; color: #e9fffa; padding: 12px 14px; border-radius: 5px; white-space: pre-wrap; }
+  li { margin: 6px 0; }
+  .step { page-break-inside: avoid; }
+  .small { color: #5f7478; font-size: 9.5pt; }
+</style>
+</head>
+<body>
+<h1>DrainBot Setup Guide</h1>
+<p class="subtitle">How to load and run the project on another Windows computer</p>
+
+<div class="box"><strong>GitHub repository:</strong> https://github.com/sandhiyanambiraj/drain_bot<br>
+This guide runs the camera vision console. The camera requires a working webcam and browser permission.</div>
+
+<h2>1. Install required software</h2>
+<div class="step">
+<p>Install these programs on the new computer:</p>
+<ul>
+  <li><strong>Git for Windows:</strong> https://git-scm.com/download/win</li>
+  <li><strong>Node.js LTS:</strong> https://nodejs.org/</li>
+  <li><strong>Python 3.11 or newer:</strong> https://www.python.org/downloads/</li>
+</ul>
+<p>During Python installation, enable <strong>Add Python to PATH</strong>.</p>
+</div>
+
+<h2>2. Download the project</h2>
+<div class="step">
+<p>Open PowerShell and run:</p>
+<pre>git clone https://github.com/sandhiyanambiraj/drain_bot.git
+cd drain_bot</pre>
+</div>
+
+<h2>3. Install the frontend packages</h2>
+<div class="step">
+<pre>cd frontend
+npm install</pre>
+<p>Wait until the installation finishes without errors.</p>
+</div>
+
+<h2>4. Start the camera vision console</h2>
+<div class="step">
+<p>From the <code>frontend</code> folder, run:</p>
+<pre>npm run dev</pre>
+<p>Open the URL shown in the terminal. It is normally:</p>
+<pre>http://localhost:5173/</pre>
+</div>
+
+<h2>5. Enable the camera</h2>
+<div class="step">
+<ol>
+  <li>Click <strong>Use my camera</strong>.</li>
+  <li>When the browser asks for permission, choose <strong>Allow</strong>.</li>
+  <li>If permission was blocked, click the camera or lock icon beside the address bar.</li>
+  <li>Set Camera to <strong>Allow</strong>, reload the page, and click <strong>Use my camera</strong> again.</li>
+  <li>Hold a plastic bottle clearly in front of the camera with good lighting.</li>
+</ol>
+<p>The status should show <code>AI model ready</code>. A recognized bottle is shown as <code>PLASTIC DETECTED · bottle</code>.</p>
+</div>
+
+<h2>6. Test with a photo</h2>
+<div class="step">
+<p>If camera permission is unavailable:</p>
+<ol>
+  <li>Click <strong>Scan photo</strong>.</li>
+  <li>Select a clear image of a plastic bottle.</li>
+  <li>Read the result in the live status area.</li>
+</ol>
+</div>
+
+<h2>7. Optional production preview</h2>
+<div class="step">
+<p>To build and preview the production version:</p>
+<pre>cd frontend
+npm run build
+npm run preview</pre>
+<p>Open the preview URL shown in the terminal, normally <code>http://localhost:4173/</code>.</p>
+</div>
+
+<h2>8. Common problems</h2>
+<div class="step">
+<h3>“npm is not recognized”</h3><p>Install Node.js LTS, close PowerShell, open a new PowerShell window, and try again.</p>
+<h3>“Camera blocked”</h3><p>Allow camera access from the browser address-bar permissions, reload the page, and try again.</p>
+<h3>“AI model unavailable”</h3><p>Make sure the computer has internet access, wait for the model to load, or click <strong>Retry</strong>.</p>
+<h3>No bottle detected</h3><p>Use a clear bottle image, improve lighting, keep the bottle fully visible, and move it closer to the camera. The model recognizes common object shapes; it cannot guarantee the material of every object.</p>
+<h3>Port already in use</h3><p>Run <code>npm run dev -- --port 5174</code> and open the new URL shown in the terminal.</p>
+</div>
+
+<h2>9. Stop the application</h2>
+<div class="step"><p>Return to the PowerShell window running the server and press <code>Ctrl + C</code>.</p></div>
+
+<p class="small">DrainBot Vision Console setup guide. Repository: sandhiyanambiraj/drain_bot</p>
+</body>
+</html>
